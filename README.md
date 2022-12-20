@@ -16,7 +16,7 @@ cd /opt
 git clone https://github.com/avaksru/HOMEd-docker-compose.git services
 cd services
 ```
-### Меняем в файле conf\homed\homed.conf настройки MQTT сервера на свои.
+### Меняем в файле conf\homed\homed-zigbee.conf настройки MQTT сервера на свои.
 
 ### Запускаем HOMEd. Переходим в каталог /opt/services
 ```bash
