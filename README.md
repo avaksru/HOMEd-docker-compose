@@ -13,7 +13,7 @@ sudo apt install docker docker.io docker-compose mc
 ### Создаем каталог проекта и скачиваем файлы конфигурации
 ```bash
 cd /opt
-git clone https://github.com/avaksru/-HOMEd-docker-compose.git services
+git clone https://github.com/avaksru/HOMEd-docker-compose.git services
 cd services
 ```
 ### Меняем в файле conf\homed\homed.conf настройки MQTT сервера на свои.
