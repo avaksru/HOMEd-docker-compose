@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+  homed:
+    image: docker.u236.org/homed-zigbee
+    container_name: homed
+    environment:
+      - TZ=Europe/Moscow
+    volumes:
+      - ./conf/homed:/data
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0
+    restart: unless-stopped
+    networks:
+      - backend
+      
+networks:
+  backend:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.16.0/24
