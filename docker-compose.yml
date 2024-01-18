@@ -1,18 +1,43 @@
 version: "3.7"
 services:
-  homed:
-    image: docker.u236.org/homed-zigbee
-    container_name: homed
+  homed-automation:
+    container_name: homed-automation
+    image: docker.u236.org/homed-automation:latest
+    restart: unless-stopped
+    privileged: true
     environment:
       - TZ=Europe/Moscow
     volumes:
-      - ./conf/homed:/data
-    devices:
-      - /dev/ttyUSB0:/dev/ttyUSB0
-    restart: unless-stopped
+      - /opt/homed-automation:/data
     networks:
       - backend
-      
+  homed-web:
+    container_name: homed-web
+    image: docker.u236.org/homed-web:latest
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=Europe/Moscow
+    volumes:
+      - /opt/homed-web:/data
+    ports:
+      - 8080:8080
+    networks:
+      - backend
+  homed-zigbee:
+    container_name: homed-zigbee
+    image: docker.u236.org/homed-zigbee:latest
+    restart: unless-stopped
+    privileged: true
+    environment:
+      - TZ=Europe/Moscow
+    volumes:
+      - /opt/homed-zigbee:/data
+    devices:
+      - /dev/ttyUSB0
+    networks:
+      - backend
+
 networks:
   backend:
     driver: bridge
